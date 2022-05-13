@@ -1,4 +1,3 @@
-
 $(".show-sidebar-btn").click(function () {
     $(".sidebar").animate({marginLeft:0});
 });
@@ -27,11 +26,14 @@ $(".full-screen-btn").click(function () {
     }
 });
 
-let screenHeight = $(window).height();
-let currentMenuHeight = $(".nav-menu .active").offset().top;
+if($(".nav-menu .active").offset() != undefined){
+    let screenHeight = $(window).height();
+    let currentMenuHeight = $(".nav-menu .active").offset().top;
 
-if(currentMenuHeight > screenHeight*0.8 ){
-    $(".sidebar").animate({
-        scrollTop:currentMenuHeight-100
-    },1000)
+    if(currentMenuHeight > screenHeight*0.8 ){
+        $(".sidebar").animate({
+            scrollTop:currentMenuHeight-100
+        },1000)
+    }
 }
+

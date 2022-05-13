@@ -15,7 +15,10 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $articles = Article::with('user','category')->paginate(10);
+        $articles = Article::when(isset(request()->search),function ($query){
+            $search = request()->search;
+            return $query->orWhere("title","like","%$search%")->orWhere("description","like","%$search%");
+        })->with('user','category')->latest('id')->paginate(10);
         return view('article.index',compact('articles'));
     }
 
@@ -38,9 +41,9 @@ class ArticleController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'category' => "required",
-            "title" => "required|min:5|max:100",
-            "description" => "required|min:5|max:500",
+            'category' => "required|exists:categories,id",
+            "title" => "required|min:5|max:200",
+            "description" => "required|min:5",
         ]);
         $article = new Article();
         $article->title = $request->title;
@@ -59,7 +62,7 @@ class ArticleController extends Controller
      */
     public function show(Article $article)
     {
-        //
+        return view("article.show",compact('article'));
     }
 
     /**
@@ -70,7 +73,7 @@ class ArticleController extends Controller
      */
     public function edit(Article $article)
     {
-        //
+        return view('article.edit',compact('article'));
     }
 
     /**
@@ -82,7 +85,17 @@ class ArticleController extends Controller
      */
     public function update(Request $request, Article $article)
     {
-        //
+        $request->validate([
+            'category' => "required|exists:categories,id",
+            "title" => "required|min:5|max:200",
+            "description" => "required|min:5",
+        ]);
+       
+        $article->title = $request->title;
+        $article->description = $request->description;
+        $article->category_id = $request->category;
+        $article->save();
+        return redirect()->route('article.index')->with('updateSuccess','Article is updated');
     }
 
     /**
@@ -94,6 +107,6 @@ class ArticleController extends Controller
     public function destroy(Article $article)
     {
         $article->delete();
-        return redirect()->route("article.index");
+        return redirect()->route('article.index',['page'=>request()->page]);
     }
 }

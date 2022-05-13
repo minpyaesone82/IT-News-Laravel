@@ -1,8 +1,6 @@
 @extends('layouts.app')
 @section('content')
-
     @guest
-        
         <div class="container">
             <div class="row vh-100 justify-content-center align-items-center">
                 <div class="col-12 col-md-4">
@@ -23,5 +21,6 @@
     @else
         <header >welcome </header>
     @endguest
+   
     
 @endsection
