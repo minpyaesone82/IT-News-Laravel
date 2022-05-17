@@ -9,10 +9,9 @@ use Faker\Generator as Faker;
 
 $factory->define(Article::class, function (Faker $faker) {
     return [
-        "title" => $faker->text(rand(50,100)),
-        "description" => $faker->text(rand(200,500)),
+        "title" => $faker->text(rand(70,200)),
+        "description" => $faker->text(rand(400,700)),
         "user_id" => User::all()->random()->id,
         "category_id" =>Category::all()->random()->id
-
     ];
 });

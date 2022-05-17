@@ -8,7 +8,7 @@
         </button>
     </div>
     <div class="nav-menu">
-        <ul>
+        <ul class=" ">
             <x-menu-spacer></x-menu-spacer>
 
             <x-menu-item link="{{route('home')}}" class="feather feather-home" name="Home"></x-menu-item>
