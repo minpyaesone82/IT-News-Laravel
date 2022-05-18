@@ -1,8 +1,8 @@
 <div class="col-12 col-lg-3 col-xl-2 vh-100 sidebar">
     <div class="d-flex justify-content-between align-items-center py-2 mt-3 nav-brand">
-        <div class="d-flex align-items-center">
+        <a href="{{route('index')}}" class="d-flex align-items-center">
             <img src="{{asset(base::$logo)}}" class="w-50" alt="">
-        </div>
+        </a>
         <button class="hide-sidebar-btn btn btn-light d-block d-lg-none">
             <i class="feather-x text-primary" style="font-size: 2em;"></i>
         </button>
