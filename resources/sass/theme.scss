@@ -7,6 +7,31 @@ $nav-link-font-weight : bold;
 
 @import '~bootstrap5/scss/bootstrap';
 
+.category-lists{
+  position: relative;
+
+}
+.category-lists::before{
+      content: "";
+      width: 40%;
+      height: 2px;  
+      background-color: rgb(125, 116, 116);
+      position: absolute;
+      bottom: -10px;
+      transition: all 250ms ease-in-out;
+  }
+
+  @media screen and (max-width:770px) {
+    .category-lists::before{
+      content: "";
+      width: 25%;
+      height: 2px;  
+      background-color: rgb(125, 116, 116);
+      position: absolute;
+      bottom: -10px;
+      transition: all 250ms ease-in-out;
+  }
+  }
 .navbar-brand img{
     filter: drop-shadow(0 3px rgba(0,0,0,0.2));
 }

@@ -73,7 +73,7 @@
                         </div>
 
                         <div id="category">
-                            <h4 class="fw-bolder">Category Lists</h4>
+                            <h4 class="fw-bolder category-lists" style="margin-bottom:2rem;">Category Lists</h4>
                             <ul class="list-group">
                                 @foreach ($categories as $category)
                                 <li class="list-group-item">
