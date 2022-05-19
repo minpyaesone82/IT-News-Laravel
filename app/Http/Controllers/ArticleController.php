@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Article;
+use App\photo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class ArticleController extends Controller
@@ -58,7 +60,21 @@ class ArticleController extends Controller
             'category' => "required|exists:categories,id",
             "title" => "required|min:5|max:200",
             "description" => "required|min:5",
+            "photo.*" => "mimes:png,jpg,jpeg",
         ]);
+
+        
+        
+        if($request->hasFile("photo")){
+            $fileNameArr = [];
+            foreach($request->file('photo') as $file){
+                $newFileName = uniqid()."_profile.".$file->getClientOriginalExtension();
+                array_push($fileNameArr,$newFileName);
+                $dir = "/public/article";
+                Storage::putFileAs($dir,$file,$newFileName);
+            }
+        }
+
         $article = new Article();
         $article->title = $request->title;
         $article->slug = Str::slug($request->title)."-".uniqid();
@@ -67,6 +83,16 @@ class ArticleController extends Controller
         $article->user_id = Auth::id();
         $article->category_id = $request->category;
         $article->save();
+
+        if($request->hasFile('photo')){
+            foreach($fileNameArr as $file){
+                $photo = new photo();
+                $photo->article_id = $article->id;
+                $photo->location = $file; 
+                $photo->save();
+            }
+        }
+        return redirect()->route('article.index')->with("status","Adding successfully");
         return redirect()->back();
     }
 
@@ -105,6 +131,7 @@ class ArticleController extends Controller
             'category' => "required|exists:categories,id",
             "title" => "required|min:5|max:200",
             "description" => "required|min:5",
+            
         ]);
        
         if($article->title != $request->title) {

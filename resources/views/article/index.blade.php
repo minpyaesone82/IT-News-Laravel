@@ -59,6 +59,9 @@
                             </div>
                         </form>
                     </div>
+                    @if(session('status'))
+                    <p class="alert alert-success mt-3">{!!session('status')!!}</p>
+                    @endif
                     <div class="d-md-none d-sm-block mt-3 ml-1">
                         @isset(request()->search)
                             <span class="font-weight-bold">Search By : "{{ substr( request()->search,0,25)}}"</span>

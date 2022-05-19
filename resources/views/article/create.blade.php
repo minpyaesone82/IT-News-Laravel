@@ -17,7 +17,7 @@
                         </p>
                         <a href="{{route('article.index')}}" class="btn btn-primary"> <i class="feather feather-layers"></i> </a>
                     </div>
-                    <form action=" {{route('article.store')}} " id="createArticle" method="post">
+                    <form action=" {{route('article.store')}} " id="createArticle" method="post" enctype="multipart/form-data">
                         @csrf
                     </form>
                 </div>
@@ -46,11 +46,20 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="">
+
                                 <div class="form-gorup">
                                     <label for="" class="mb-2">Article Title</label>
                                     <input type="text" name="title" class="form-control" form="createArticle" value="{{old('title')}}">
                                     @error('title')
                                         <small class="font-weight-bold text-danger">{{$message}}</small>
+                                    @enderror
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="" class="my-2" >Select Photo</label>
+                                    <input type="file" name="photo[]" class="form-control p-1" multiple >
+                                    @error('photo.*')
+                                        <small class="text-danger font-weight-bold">{{$message}}</small>
                                     @enderror
                                 </div>
         

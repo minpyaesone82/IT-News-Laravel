@@ -27,7 +27,7 @@ Route::prefix('admin')->middleware("auth")->group(function(){
     Route::resource('category','CategoryController');
     Route::resource('article','ArticleController');
     Route::get('/home', 'HomeController@index')->name('home');
-
+    Route::resource('photo', 'PhotoController');
     Route::get("edit-photo","ProfileController@editPhoto")->name("profile.editPhoto");
     Route::post("change-photo","ProfileController@changePhoto")->name("profile.changePhoto");
     Route::get("changePassword","ProfileController@changePassword")->name("profile.changePassword");
