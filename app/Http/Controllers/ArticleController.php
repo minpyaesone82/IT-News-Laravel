@@ -154,6 +154,16 @@ class ArticleController extends Controller
      */
     public function destroy(Article $article)
     {
+        
+            if(isset($article->photo)){
+                $dir ="/public/article/";
+                foreach($article->photo as $p){
+                    Storage::delete($dir.$p->location);
+                }
+                $toDel = $article->photo->pluck('id');
+                photo::destroy($toDel);
+    
+            }
         $article->delete();
         return redirect()->route('article.index',['page'=>request()->page]);
     }

@@ -4,10 +4,10 @@
         .article-thumbnail{
             margin-top: 10px;
             width: 100%;
-            height:18rem;
-            display: inline-block;
-            background-size:contain;
+            height: auto;
             border-radius:0.25rem;
+            background-size: cover;
+            background-repeat: none;
         }
     </style>
 @endsection
@@ -19,11 +19,15 @@
                 <div class="p-0 p-md-3">
                     <a class="fw-bold h4 d-block text-decoration-none" style="word-wrap:break-word"
                         href="{{route('detail',$article->slug)}}">
-                        {{$article->title}}</a>
+                        {{$article->title}}
+                    </a>
+
+                    @isset($article->photo)
                         @foreach ($article->photo as $img)
-                        <div class="article-thumbnail" style="background-image: url('{{asset("storage/article/".$img->location)}}') ">
-                        </div>
+                        <img class="article-thumbnail" width="700" height="400" style="background-image: url('{{asset("storage/article/".$img->location)}}') ">
                         @endforeach
+                    @endisset
+
                     <div class="small post-category">
                         <a href="{{route('baseOnCategory',$article->category->id)}}" rel="category tag">{{$article->category->title}}</a> 
                     </div>

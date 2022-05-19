@@ -3,13 +3,11 @@
     <style>
         .article-thumbnail{
             margin-top: 10px;
-            height:100%;
             width: 100%;
+            height: auto;
             border-radius:0.25rem;
-        }
-        .image{
-            height: 100px;
-            width: 100px;
+            background-size: cover;
+            background-repeat: none;
         }
     </style>
 @endsection
@@ -18,18 +16,18 @@
     <div class="py-3">
 
         <div class="small post-category">
-            <a href="http://localhost:9090/category/apple/" rel="category tag">{{$article->category->title}}</a> 
+            <a href="{{route('baseOnCategory',$article->category->id)}}" rel="category tag">{{$article->category->title}}</a> 
         </div>
 
         <h4 class="fw-bolder mt-2" style="word-break: break-all" >{{$article->title}} </h4>
-        <div class="image">
-            @foreach ($article->photo as $img)
-            <div class="article-thumbnail w-100" style="background-image: url('{{asset("storage/article/".$img->location)}}') ">
-            </div>
-            @endforeach
-        </div>
 
-        <div class="d-flex justify-content-between align-items-center">
+            @foreach ($article->photo as $img)
+            <img class="article-thumbnail" width="700" height="400" style="background-image: url('{{asset("storage/article/".$img->location)}}') ">
+            @endforeach
+          
+
+
+        <div class="d-flex justify-content-between align-items-center mt-3">
             <div class="d-flex align-items-center">
                 <img alt="" src="{{ asset('storage/profile/' .$article->user->photo ) }}"
                      class="avatar avatar-50 photo rounded-circle" style="Height:40px;width:40px;"
