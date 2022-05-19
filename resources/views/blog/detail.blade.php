@@ -1,4 +1,18 @@
 @extends('blog.master')
+@section('head')
+    <style>
+        .article-thumbnail{
+            margin-top: 10px;
+            height:100%;
+            width: 100%;
+            border-radius:0.25rem;
+        }
+        .image{
+            height: 100px;
+            width: 100px;
+        }
+    </style>
+@endsection
 @section('content')
 
     <div class="py-3">
@@ -8,6 +22,12 @@
         </div>
 
         <h4 class="fw-bolder mt-2" style="word-break: break-all" >{{$article->title}} </h4>
+        <div class="image">
+            @foreach ($article->photo as $img)
+            <div class="article-thumbnail w-100" style="background-image: url('{{asset("storage/article/".$img->location)}}') ">
+            </div>
+            @endforeach
+        </div>
 
         <div class="d-flex justify-content-between align-items-center">
             <div class="d-flex align-items-center">

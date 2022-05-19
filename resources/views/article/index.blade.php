@@ -2,6 +2,16 @@
 @section('title') Article List @endsection
 @section('head')
     <style>
+            .article-thumbnail{
+            margin-top: 10px;
+            width: 40px;
+            height: 40px;
+            display: inline-block;
+            background-size: 180%;
+            border-radius:0.25rem;
+        }
+
+
         @media screen and (max-width:430px){
             .form-change{
                 flex-flow: row !important;
@@ -92,6 +102,12 @@
                                    <span class="font-weight-bold">{{substr($article->title,0,20)}}</span>
                                    <br>
                                    <small>{{substr($article->description,0,40)}}....</small>
+                                   <br>
+                                   @foreach ($article->photo as $img)
+                                        <div class="article-thumbnail" style="background-image: url('{{asset("storage/article/".$img->location)}}') ">
+                                        </div>
+                                    @endforeach
+                                    
                                 </td>
                                
                                <td class="text-nowrap">{{$article->category->title}}</td>

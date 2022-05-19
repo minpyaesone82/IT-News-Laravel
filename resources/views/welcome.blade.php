@@ -1,5 +1,18 @@
 @extends('blog.master')
+@section('head')
+    <style>
+        .article-thumbnail{
+            margin-top: 10px;
+            width: 100%;
+            height:18rem;
+            display: inline-block;
+            background-size:contain;
+            border-radius:0.25rem;
+        }
+    </style>
+@endsection
 @section('content')
+
     <div class="article-list">
         @forelse ($articles as $article)
             <div class="border-bottom mb-4 pb-4 article-preview">
@@ -7,7 +20,10 @@
                     <a class="fw-bold h4 d-block text-decoration-none" style="word-wrap:break-word"
                         href="{{route('detail',$article->slug)}}">
                         {{$article->title}}</a>
-
+                        @foreach ($article->photo as $img)
+                        <div class="article-thumbnail" style="background-image: url('{{asset("storage/article/".$img->location)}}') ">
+                        </div>
+                        @endforeach
                     <div class="small post-category">
                         <a href="{{route('baseOnCategory',$article->category->id)}}" rel="category tag">{{$article->category->title}}</a> 
                     </div>

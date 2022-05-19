@@ -17,73 +17,75 @@
                         </p>
                         <a href="{{route('article.index')}}" class="btn btn-primary"> <i class="feather feather-layers"></i> </a>
                     </div>
-                    <form action=" {{route('article.store')}} " id="createArticle" method="post" enctype="multipart/form-data">
-                        @csrf
-                    </form>
+                    
                 </div>
             </div>
-            <div class="row mt-3">
-                <div class="col-12 col-lg-3">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="form-group">
-                                <label for="">Select Category</label>
-                                <select name="category" class="custom-select" id="" form="createArticle">
-                                    <option value="">Select category</option>
-                                    @foreach ($categories as $category)
-                                        <option value="{{$category->id}}" {{old('category') == $category->id ? 'selected':''}}>{{$category->title}}</option>
-                                    @endforeach
-
-                                </select>
-                                @error('category')
-                                    <small class="font-weight-bold text-danger">{{$message}}</small>
-                                @enderror
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-lg-6">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="">
-
-                                <div class="form-gorup">
-                                    <label for="" class="mb-2">Article Title</label>
-                                    <input type="text" name="title" class="form-control" form="createArticle" value="{{old('title')}}">
-                                    @error('title')
-                                        <small class="font-weight-bold text-danger">{{$message}}</small>
-                                    @enderror
-                                </div>
-
+            <form action=" {{route('article.store')}} " id="createArticle" method="post" enctype="multipart/form-data">
+                @csrf
+                <div class="row mt-3">
+                    <div class="col-12 col-lg-3">
+                        <div class="card">
+                            <div class="card-body">
                                 <div class="form-group">
-                                    <label for="" class="my-2" >Select Photo</label>
-                                    <input type="file" name="photo[]" class="form-control p-1" multiple >
-                                    @error('photo.*')
-                                        <small class="text-danger font-weight-bold">{{$message}}</small>
-                                    @enderror
-                                </div>
-        
-                                <div class="form-gorup">
-                                    <label for="" class="my-2">Article Description</label>
-                                    <textarea type="text" name="description" rows="7" class="form-control" form="createArticle" value=""> {{old('description')}} </textarea>
-                                    @error('description')
+                                    <label for="">Select Category</label>
+                                    <select name="category" class="custom-select" id="" form="createArticle">
+                                        <option value="">Select category</option>
+                                        @foreach ($categories as $category)
+                                            <option value="{{$category->id}}" {{old('category') == $category->id ? 'selected':''}}>{{$category->title}}</option>
+                                        @endforeach
+    
+                                    </select>
+                                    @error('category')
                                         <small class="font-weight-bold text-danger">{{$message}}</small>
                                     @enderror
                                 </div>
-        
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="">
+    
+                                    <div class="form-gorup">
+                                        <label for="" class="mb-2">Article Title</label>
+                                        <input type="text" name="title" class="form-control" form="createArticle" value="{{old('title')}}">
+                                        @error('title')
+                                            <small class="font-weight-bold text-danger">{{$message}}</small>
+                                        @enderror
+                                    </div>
+    
+                                    <div class="form-group">
+                                        <label for="photo" class="my-2" >Select Photo</label>
+                                        <input type="file" name="photo[]"  class="form-control p-1" multiple >
+                                        @error('photo.*')
+                                            <small class="text-danger font-weight-bold">{{$message}}</small>
+                                        @enderror
+                                    </div>
+            
+                                    <div class="form-gorup">
+                                        <label for="" class="my-2">Article Description</label>
+                                        <textarea type="text" name="description" rows="7" class="form-control" form="createArticle" value=""> {{old('description')}} </textarea>
+                                        @error('description')
+                                            <small class="font-weight-bold text-danger">{{$message}}</small>
+                                        @enderror
+                                    </div>
+            
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <button class="w-100 btn btn-primary" form="createArticle">Create Article</button>
+    
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-12 col-lg-3">
-                    <div class="card">
-                        <div class="card-body">
-                            <button class="w-100 btn btn-primary" form="createArticle" type="submit">Create Article</button>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
+            </form>
+            
         </div>
     </div>
 @endsection
