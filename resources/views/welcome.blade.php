@@ -1,19 +1,39 @@
 @extends('blog.master')
+@section('head')
+    <style>
+        .article-thumbnail{
+            margin-top: 10px;
+            width: 100%;
+            height: auto;
+            border-radius:0.25rem;
+            background-size: cover;
+            background-repeat: none;
+        }
+    </style>
+@endsection
 @section('content')
+
     <div class="article-list">
         @forelse ($articles as $article)
             <div class="border-bottom mb-4 pb-4 article-preview">
                 <div class="p-0 p-md-3">
-                    <a class="fw-bold h4 d-block text-decoration-none"
-                        href="{{route('detail',$article->id)}}">
-                        {{$article->title}}</a>
+                    <a class="fw-bold h4 d-block text-decoration-none" style="word-wrap:break-word"
+                        href="{{route('detail',$article->slug)}}">
+                        {{$article->title}}
+                    </a>
+
+                    @isset($article->photo)
+                        @foreach ($article->photo as $img)
+                        <img class="article-thumbnail" width="700" height="400" style="background-image: url('{{asset("storage/article/".$img->location)}}') ">
+                        @endforeach
+                    @endisset
 
                     <div class="small post-category">
                         <a href="{{route('baseOnCategory',$article->category->id)}}" rel="category tag">{{$article->category->title}}</a> 
                     </div>
 
-                    <div class="text-black-50 the-excerpt mt-3">
-                        <p> {{Str::words($article->description,50)}}</p>
+                    <div class="text-black-50 the-excerpt mt-3 ">
+                        <p style="word-break: break-all"> {{$article->excerpt}}</p>
                     </div>
 
                     <div class="d-flex justify-content-between align-items-center see-more-group">
