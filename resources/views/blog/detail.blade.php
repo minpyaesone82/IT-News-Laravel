@@ -7,7 +7,7 @@
             <a href="http://localhost:9090/category/apple/" rel="category tag">{{$article->category->title}}</a> 
         </div>
 
-        <h4 class="fw-bolder mt-2">{{$article->title}} </h4>
+        <h4 class="fw-bolder mt-2" style="word-break: break-all" >{{$article->title}} </h4>
 
         <div class="d-flex justify-content-between align-items-center">
             <div class="d-flex align-items-center">
@@ -16,7 +16,7 @@
                      loading="lazy">
                 
                     <div class="ms-2">
-                        <a href="{{route('baseOnUser',$article->user->id)}}" class="small text-primary">
+                        <a href="{{route('baseOnUser',$article->user->id)}}" class="small text-primary" style="text-decoration: none" >
                             <i class="feather-user"></i>
                             {{$article->user->name}}
                         </a>
@@ -30,7 +30,7 @@
         </div>
         
 
-        <p class="mt-3">{{$article->description}}</p>
+        <p class="mt-3" style="word-break: break-all">{{$article->description}}</p>
 
 
         @php

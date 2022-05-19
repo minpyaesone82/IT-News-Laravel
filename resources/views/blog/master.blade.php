@@ -32,17 +32,21 @@
                 <ul id="menu-top-right-menu" class="navbar-nav ms-auto mb-2 mb-md-0 align-items-center">
                     <li id="menu-item-12"
                         class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home nav-item nav-item-12">
-                        <a href="{{route('index')}}" class="nav-link {{request()->url() === route('index') ? "activesW" :""}}">Home</a></li>
+                        <a href="{{route('index')}}" class="nav-link {{request()->url() === route('index') ? "active" :""}}">Home</a>
+                    </li>
                     <li id="menu-item-16"
                         class="menu-item menu-item-type-post_type menu-item-object-page nav-item nav-item-16"><a
-                            href="#" class="nav-link ">About</a></li>
+                            href="#" class="nav-link ">About</a>
+                        </li>
                     
                     <li id="menu-item-11"
                         class="menu-item menu-item-type-custom menu-item-object-custom nav-item nav-item-11"><a
-                            href="#" class="nav-link ">Contact Us</a></li>
+                            href="#" class="nav-link ">Contact Us</a>
+                        </li>
                             <li id="menu-item-11"
                         class="menu-item menu-item-type-custom menu-item-object-custom nav-item nav-item-11"><a
-                            href="{{route('home')}}" class="nav-link ">Dashboard</a></li>
+                            href="{{route('home')}}" class="nav-link ">Dashboard</a>
+                        </li>
                 </ul>
             </div>
         </div>
