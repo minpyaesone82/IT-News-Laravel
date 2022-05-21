@@ -11,6 +11,22 @@ use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
 {
+
+    public function updateInfo(Request $request)
+    {
+        $request->validate([
+            'phone' => 'required|min:5|max:10',
+            'address' => 'required|regex:/(^([0-9]+ )?[a-zA-Z ]+$)/',
+        ]);
+
+         $currentUser = User::find(Auth::id());
+         $currentUser->phone = $request->phone;
+         $currentUser->address = $request->address;
+         $currentUser->save();
+
+         return redirect()->back()->with("toast",["icon"=>"success","title"=>"Information Updated"]);
+    }
+
     public function editPhoto()
     {
         return view('profile.editPhoto');
@@ -75,6 +91,6 @@ class ProfileController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         $user->update();
-        return redirect()->back();
+        return redirect()->back()->with("toast",["icon"=>"success","title"=>"Email Updated"]);
     }
 }
