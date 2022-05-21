@@ -18,8 +18,6 @@ Route::get('/','BlogController@index')->name('index');
 Route::get('detail/{slug}','BlogController@detail')->name('detail');
 Route::get('baseOnCategory/{id}','BlogController@baseOnCategory')->name('baseOnCategory');
 Route::get('baseOnUser/{id}','BlogController@baseOnUser')->name('baseOnUser');
-
-
 Auth::routes();
 
 
@@ -37,7 +35,7 @@ Route::prefix('admin')->middleware("auth")->group(function(){
     Route::get("profile","ProfileController@profile")->name("profile.yourProfile");
     Route::get("email","ProfileController@email")->name("profile.email");
     Route::post("emailChange","ProfileController@emailChange")->name("profile.emailChange");
-
+    Route::post('updateInfo',"ProfileController@updateInfo")->name("profile.updateInfo");
 });
 
 
