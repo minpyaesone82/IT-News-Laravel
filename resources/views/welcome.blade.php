@@ -28,7 +28,7 @@
                         @endforeach
                     @endisset
 
-                    <div class="small post-category">
+                    <div class="small post-category mt-2">
                         <a href="{{route('baseOnCategory',$article->category->id)}}" rel="category tag">{{$article->category->title}}</a> 
                     </div>
 

@@ -94,7 +94,7 @@ class ArticleController extends Controller
             }
         }
         return redirect()->route('article.index')->with("status","Adding successfully");
-        return redirect()->back();
+        
     }
 
     /**
@@ -132,8 +132,10 @@ class ArticleController extends Controller
             'category' => "required|exists:categories,id",
             "title" => "required|min:5|max:200",
             "description" => "required|min:5",
-            
+            "photo.*" => "mimes:png,jpg,jpeg",
         ]);
+
+        
        
         if($article->title != $request->title) {
             $article->slug = Str::slug($request->title)."-".uniqid();
@@ -142,7 +144,8 @@ class ArticleController extends Controller
         $article->description = $request->description;
         $article->excerpt = Str::words($request->description,50);
         $article->category_id = $request->category;
-        $article->save();
+        $article->update();
+
         return redirect()->route('article.index')->with('updateSuccess','Article is updated');
     }
 

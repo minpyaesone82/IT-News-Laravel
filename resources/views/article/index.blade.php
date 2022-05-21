@@ -9,25 +9,11 @@
             display: inline-block;
             background-size: 180%;
             border-radius:0.25rem;
+            
         }
 
 
-        @media screen and (max-width:430px){
-            .form-change{
-                flex-flow: row !important;
-                display: flex;
-                align-items: center;
-            }
-            form{
-                width:100%;
-            }
-        }
-        @media screen and (min-width:450px){
-            .form-change{
-                display: flex;
-                align-items: center;
-            }
-        }
+
     </style>  
 @endsection
 @section('content')
@@ -60,7 +46,7 @@
                             @endisset
                         </div>
                         <form action="{{ route('article.index') }}" class="" method="get">
-                            <div class="form-change">
+                            <div class="form-group d-inline-flex mb-0">
                                 <input type="text" name="search" placeholder="Search Article" value="{{ request()->search }}" class="form-control mr-2" required>
                                 <button class="btn btn-primary">
                                     <i class="feather-search"></i>
@@ -103,10 +89,11 @@
                                    <br>
                                    <small>{{substr($article->description,0,40)}}....</small>
                                    <br>
-                                   @foreach ($article->photo as $img)
-                                        <div class="article-thumbnail" style="background-image: url('{{asset("storage/article/".$img->location)}}') ">
-                                        </div>
-                                    @endforeach
+                                    @isset($article->photo)
+                                        @foreach ($article->photo as $img)
+                                        <img class="article-thumbnail" width="50" height="40" style="background-image: url('{{asset("storage/article/".$img->location)}}') ">
+                                        @endforeach
+                                    @endisset
                                     
                                 </td>
                                
