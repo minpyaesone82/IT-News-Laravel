@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use PHPUnit\TextUI\XmlConfiguration\Group;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,7 +22,19 @@ Route::get('baseOnUser/{id}','BlogController@baseOnUser')->name('baseOnUser');
 Auth::routes();
 
 
-Route::prefix('admin')->middleware("auth")->group(function(){
+
+
+
+
+
+Route::prefix('admin')->middleware('auth')->group(function(){
+
+    Route::middleware('AdminOnly')->group(function(){
+        Route::get('user-manager','UserManagerController@index')->name('user-manager.index');
+
+    });
+
+
     Route::resource('category','CategoryController');
     Route::resource('article','ArticleController');
     Route::get('/home', 'HomeController@index')->name('home');
@@ -37,6 +50,7 @@ Route::prefix('admin')->middleware("auth")->group(function(){
     Route::post("emailChange","ProfileController@emailChange")->name("profile.emailChange");
     Route::post('updateInfo',"ProfileController@updateInfo")->name("profile.updateInfo");
 });
+
 
 
 

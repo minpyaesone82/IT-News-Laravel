@@ -28,6 +28,14 @@
             <x-menu-item link="{{route('profile.editPhoto')}}" class="feather feather-arrow-up" name="Update Photo" ></x-menu-item>
 
             <x-menu-spacer></x-menu-spacer>
+
+            @if (Auth::user()->role == 0)
+            <x-menu-title title="User Management"></x-menu-title>
+            <x-menu-item link="{{route('user-manager.index')}}" class="feather feather-users" name="Users" ></x-menu-item>  
+            @endif
+            
+
+            <x-menu-spacer></x-menu-spacer>
             <li>
                 <a class="btn btn-outline-primary w-100" href="{{ route('logout') }}"
                     onclick="event.preventDefault();
