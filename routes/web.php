@@ -23,21 +23,21 @@ Auth::routes();
 
 
 
+Route::middleware(['auth','IsBaned'])->group(function(){
+     Route::middleware('AdminOnly')->group(function(){
+        Route::get('user-manager','UserManagerController@index')->name('user-manager.index');
+        Route::post('/make-admin','UserManagerController@makeAdmin')->name("user-manager.makeAdmin");
+        Route::post('/make-ban','UserManagerController@banUser')->name("user-manager.banUser");
+        Route::get('/home', 'HomeController@index')->name('home');
 
 
-
+    });
+});
 
 Route::prefix('admin')->middleware('auth')->group(function(){
 
-    Route::middleware('AdminOnly')->group(function(){
-        Route::get('user-manager','UserManagerController@index')->name('user-manager.index');
-
-    });
-
-
     Route::resource('category','CategoryController');
     Route::resource('article','ArticleController');
-    Route::get('/home', 'HomeController@index')->name('home');
     Route::resource('photo', 'PhotoController');
     Route::get("edit-photo","ProfileController@editPhoto")->name("profile.editPhoto");
     Route::post("change-photo","ProfileController@changePhoto")->name("profile.changePhoto");

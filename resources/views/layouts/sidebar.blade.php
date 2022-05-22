@@ -27,7 +27,7 @@
             <x-menu-item link="{{route('profile.email')}}" class="feather feather-edit" name="Update Name & Email" ></x-menu-item>
             <x-menu-item link="{{route('profile.editPhoto')}}" class="feather feather-arrow-up" name="Update Photo" ></x-menu-item>
 
-            <x-menu-spacer></x-menu-spacer>
+            {{-- <x-menu-spacer></x-menu-spacer> --}}
 
             @if (Auth::user()->role == 0)
             <x-menu-title title="User Management"></x-menu-title>

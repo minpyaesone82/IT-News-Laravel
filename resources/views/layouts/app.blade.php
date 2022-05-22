@@ -41,6 +41,7 @@
  @endauth
 
      @include('layouts.toast');
+     @include('layouts.alert');
  
 
 </body>
