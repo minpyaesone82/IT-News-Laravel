@@ -2,22 +2,18 @@
 @section('title') Article List @endsection
 @section('head')
     <style>
-        @media screen and (max-width:430px){
-            .form-change{
-                flex-flow: row !important;
-                display: flex;
-                align-items: center;
-            }
-            form{
-                width:100%;
-            }
+            .article-thumbnail{
+            margin-top: 10px;
+            width: 40px;
+            height: 40px;
+            display: inline-block;
+            background-size: 180%;
+            border-radius:0.25rem;
+            
         }
-        @media screen and (min-width:450px){
-            .form-change{
-                display: flex;
-                align-items: center;
-            }
-        }
+
+
+
     </style>  
 @endsection
 @section('content')
@@ -50,7 +46,7 @@
                             @endisset
                         </div>
                         <form action="{{ route('article.index') }}" class="" method="get">
-                            <div class="form-change">
+                            <div class="form-group d-inline-flex mb-0">
                                 <input type="text" name="search" placeholder="Search Article" value="{{ request()->search }}" class="form-control mr-2" required>
                                 <button class="btn btn-primary">
                                     <i class="feather-search"></i>
@@ -59,6 +55,9 @@
                             </div>
                         </form>
                     </div>
+                    @if(session('status'))
+                    <p class="alert alert-success mt-3">{!!session('status')!!}</p>
+                    @endif
                     <div class="d-md-none d-sm-block mt-3 ml-1">
                         @isset(request()->search)
                             <span class="font-weight-bold">Search By : "{{ substr( request()->search,0,25)}}"</span>
@@ -89,6 +88,13 @@
                                    <span class="font-weight-bold">{{substr($article->title,0,20)}}</span>
                                    <br>
                                    <small>{{substr($article->description,0,40)}}....</small>
+                                   <br>
+                                    @isset($article->photo)
+                                        @foreach ($article->photo as $img)
+                                        <img class="article-thumbnail" width="50" height="40" style="background-image: url('{{asset("storage/article/".$img->location)}}') ">
+                                        @endforeach
+                                    @endisset
+                                    
                                 </td>
                                
                                <td class="text-nowrap">{{$article->category->title}}</td>

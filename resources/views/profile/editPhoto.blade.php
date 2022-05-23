@@ -5,7 +5,7 @@
 @endsection
 @section('content')
 <div class="container">
-    <div class="col-12 col-md-6">
+    <div class="col-12 col-md-5">
         <div class="card">
             <div class="card-header">Edit Profile</div>
             
