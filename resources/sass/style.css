@@ -8,6 +8,10 @@
     background: var(--light);
 }
 
+tr,td{
+    vertical-align:middle !important;
+}
+
 .nav-menu ul{
     list-style-type: none;
     margin:0;

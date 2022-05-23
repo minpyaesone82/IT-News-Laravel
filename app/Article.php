@@ -16,4 +16,10 @@ class Article extends Model
         return $this->belongsTo(Category::class);
         //kyike tha lo yay loh ya tl belongsTo ko //
     }
+    public function photo()
+    {
+        return $this->hasMany("App\photo");
+       
+    }
+
 }

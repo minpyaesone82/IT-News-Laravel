@@ -10710,6 +10710,10 @@ button.bg-dark:focus {
   text-transform: lowercase !important;
 }
 
+tr,td{
+  vertical-align:middle !important;
+}
+
 .text-uppercase {
   text-transform: uppercase !important;
 }

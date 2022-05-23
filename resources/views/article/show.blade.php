@@ -6,6 +6,15 @@
         .description{
             white-space: pre-line;
         }
+
+        /* .article-thumbnail{
+            margin-top: 10px;
+            width: 100%;
+            height: auto;
+            border-radius:0.25rem;
+            background-size: cover;
+            background-repeat: none;
+        } */
     </style>
 @endsection
 @section('content')
@@ -19,7 +28,16 @@
         <div class="col-12 col-lg-8">
             <div class="card">
                 <div class="card-body">
-                    <h4>{{$article->title}}</h4>
+                    
+                    <h4 class="mt-2">{{$article->title}}</h4>
+                    <div class="my-3">
+                        @isset($article->photo)
+                        @foreach ($article->photo as $img)
+                        <img class="article-thumbnail" width="500" height="300" style="background-image: url('{{asset("storage/article/".$img->location)}}') ; width: 100%;
+                        height: auto; border-radius:0.25rem;background-size: cover;background-repeat: none; ">
+                        @endforeach
+                    @endisset
+                    </div>
                     <div class="date-category-owner">
                         <span class="mr-1">
                             <i class="feather feather-layers text-danger"></i>

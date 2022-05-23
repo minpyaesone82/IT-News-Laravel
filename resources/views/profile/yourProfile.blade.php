@@ -6,16 +6,26 @@
 @section('content')
 
    <div class="container">
-       <div class="col-12 col-md-5">
-        <div class="card shadow-sm">
-            <div class="card-body">
-                 <img src="{{ asset('storage/profile/' . Auth::user()->photo )}}" class="rounded" style="height:20em;width:100%;" alt="">
-                 <p class="text-center mt-2">Email : {{ Auth::user()->email }}</p> 
-                 
-                 <p class="text-center">name : {{ Auth::user()->name }}</p> 
-
+       <div class="row d-flex justify-content-md-berween  align-items-center">
+        <div class="col-12 col-md-5">
+            <div class="card shadow-sm  ">
+                <div class="card-body">
+                     <img src="{{ asset('storage/profile/' . Auth::user()->photo )}}" class="rounded" style="height:20em;width:100%;" alt="">
+                    
+                      <div class="text-center">
+                        <h3 class="fw-bolder mt-3">{{ Auth::user()->name }}</h3>
+                        {{ Auth::user()->email }}
+                      </div>
+                      <hr>
+                      <p>Phone   <span class="ml-4">{{Auth::user()->phone}}</span></p>
+                      <hr>
+                      <p>Address  <span class="ml-3">{{Auth::user()->address}}</span></p>
+    
+                      
+                    
+                </div>
             </div>
-        </div>
+           </div>
        </div>
    </div>
 

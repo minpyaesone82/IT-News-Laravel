@@ -1,6 +1,5 @@
 require('./bootstrap');
 
-
 $(".show-sidebar-btn").click(function () {
     $(".sidebar").animate({marginLeft:0});
 });
