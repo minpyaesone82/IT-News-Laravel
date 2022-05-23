@@ -2,7 +2,7 @@
 @section('content')
 
     @auth
-    <header > You are welcome </header>  
+    <p > You are welcome </p>  
     @endauth
 
     
