@@ -11,8 +11,6 @@
 
     @auth
     <header >welcome </header>
-
-    {{ date('d M Y h:i A') }} 
     @endauth
 
     
