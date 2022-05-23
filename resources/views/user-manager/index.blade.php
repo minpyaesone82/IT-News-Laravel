@@ -41,8 +41,15 @@
                                                 <button type="button" class="btn btn-sm btn-outline-primary" onclick="return askConfirm({{$user->id}})"> Make Admin</button>
                                             </form> 
 
+                                            <button class="btn btn-sm btn-info" onclick="return changePassword({{$user->id}},'{{$user->name}}')">Change Password</button>
+
                                             @if ($user->isBaned == 1)
-                                                <span class="">Banned</span>
+                                                
+                                                <form class="d-inline-block" action="{{route('user-manager.removeBan')}}"  id="removeBan{{$user->id}}" method="post">
+                                                    @csrf
+                                                    <input type="hidden" name="id" value="{{$user->id}}">
+                                                    <button type="button" class="btn btn-sm btn-outline-warning" onclick="return removeBan({{$user->id}})">Remove Ban</button>
+                                                </form> 
                                             @else
                                                 <form class="d-inline-block" action="{{route('user-manager.banUser')}}" id="formBan{{$user->id}}" method="post">
                                                     @csrf
@@ -50,13 +57,19 @@
                                                     <button type="button" class="btn btn-sm btn-outline-danger" onclick="return banUser({{$user->id}})">Ban User</button>
                                                 </form> 
                                             @endif
+
+                                           
                                             
                                             @endif
 
                                            
                                             
                                         </td>
-                                        <td class="text-nowrap">{{$user->created_at}}</td>
+                                        <td class="text-nowrap">
+                                            <small><i class="feather feather-calendar"></i> {{$user->created_at->format('d M Y')}}</small>
+                                            <br>
+                                            <small><i class="feather feather-clock"></i> {{$user->created_at->format('h:i a')}}</small>
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -67,6 +80,7 @@
         </div>
     </div>
 @endsection
+ 
 
 @section('foot')
     <script>
@@ -114,6 +128,66 @@
                 },1500)
             }
             })
+        }
+
+        function removeBan(id){
+            Swal.fire({
+            title: 'Are you sure to remove ban?',
+            text: "if you do the store, this person will get the functionailty of a User ",
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Confirm'
+            }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire(
+                'Remove Ban!',
+                'Remove lote lite pr p',
+                'success'
+                )
+                setTimeout(function (){
+                    $("#removeBan"+id).submit();
+                },1500)
+            }
+            })
+        }
+
+        function changePassword(id, name)
+        {
+            let url = '{{route('changePassword')}}';
+            Swal.fire({
+            title: 'Change Password for ' + name,
+            input: 'password',
+            inputAttributes: {
+                autocapitalize: 'off',
+                required : 'required',
+                minlength : 4
+            },
+            showCancelButton: true,
+            confirmButtonText: 'Change Password',
+            showLoaderOnConfirm: true,
+            preConfirm: function(newPassword){
+               
+                $.post(url,{
+                    id : id,
+                    password : newPassword,
+                    _token : '{{csrf_token()}}'
+                }).done(function (data){
+                    if(data.status == 200){
+                        Swal.fire({
+                            icon : 'success',
+                            title : data.message,
+
+                        });
+                    }else{
+                        Swal.fire('error',data.message.password[0],'error');
+                    }
+                })
+            }
+
+            })
+
         }
     </script>
 @endsection

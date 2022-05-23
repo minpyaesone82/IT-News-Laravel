@@ -35,7 +35,8 @@ class ProfileController extends Controller
     public function changePhoto(Request $request)
     {
        $request->validate([
-           "photo"=> "required|mimes:jpeg,png,jpg,gif",
+           "photo"=> "required|mimes:png,jpg,jpeg",
+           
        ]);
     //    $dir = "/public/profile/";
     //    Storage::delete($dir.Auth::user()->photo);

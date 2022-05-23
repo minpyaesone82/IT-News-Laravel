@@ -38,6 +38,7 @@ class PhotoController extends Controller
     {
         $request->validate([
             "photo.*" => "mimes:png,jpg,jpeg",
+            
         ]);
 
         $fileNameArr = []; //this is location

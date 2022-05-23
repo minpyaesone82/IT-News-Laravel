@@ -1,20 +1,8 @@
 @extends('layouts.app')
 @section('content')
 
-    {{-- @guest
-        <a class="btn btn-primary" href="{{ route('login') }}">{{ __('Login') }}</a>
-    @else
-        <header >welcome </header>
-
-        {{ date('d M Y h:i A') }}
-    @endguest --}}
-
     @auth
-    <header >welcome </header>
-         
-    <button class="btn btn-primary test-alert" >alert</button>
-    <button class="btn btn-primary test-tost" >tost</button>
-
+    <header > You are welcome </header>  
     @endauth
 
     

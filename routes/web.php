@@ -28,7 +28,9 @@ Route::middleware(['auth','IsBaned'])->group(function(){
         Route::get('user-manager','UserManagerController@index')->name('user-manager.index');
         Route::post('/make-admin','UserManagerController@makeAdmin')->name("user-manager.makeAdmin");
         Route::post('/make-ban','UserManagerController@banUser')->name("user-manager.banUser");
+        Route::post('/remove-ban','UserManagerController@removeBan')->name("user-manager.removeBan");
         Route::get('/home', 'HomeController@index')->name('home');
+        Route::post('/change-user-password','UserManagerController@changePassword')->name("changePassword");
 
 
     });
